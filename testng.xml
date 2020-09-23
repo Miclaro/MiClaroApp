@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Testing miClaroApp">
-    <test name="Regression">
+<suite name="Suite" parallel="tests">
+    <test name="Pixel_2">
+        <listeners>
+            <listener class-name="listeners.TestListener" />
+        </listeners>
         <classes>
-            <class name="postpago.postpagoTests.DetalleConsumosTests"/>
+            <class name="test.postpago.postpagoTests.DetalleConsumosTests"></class>
         </classes>
     </test>
-</suite>
+</suite> <!-- Suite -->

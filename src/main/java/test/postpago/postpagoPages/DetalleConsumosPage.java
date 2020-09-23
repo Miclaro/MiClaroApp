@@ -1,4 +1,4 @@
-package postpago.postpagoPages;
+package test.postpago.postpagoPages;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
@@ -7,11 +7,11 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import main.BasePage;
 import org.openqa.selenium.support.PageFactory;
-import utils.WaitUtils;
+import utils.TestUtils;
 
 public class DetalleConsumosPage extends BasePage {
 
-     public static WaitUtils waitUtils  = new WaitUtils();;
+     public static TestUtils testUtils = new TestUtils();;
     /**
      * Constructor
      * @param driver : AndroidDriver
@@ -38,7 +38,7 @@ public class DetalleConsumosPage extends BasePage {
 
 
     public void setBtnpostpagohome() {
-        waitUtils.waitElement(btnPostpagoHome);
+        testUtils.waitElement(btnPostpagoHome);
         btnPostpagoHome.click();
     }
 }

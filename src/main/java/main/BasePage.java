@@ -1,7 +1,7 @@
 package main;
 
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import utils.WaitUtils;
+import utils.TestUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -14,8 +14,9 @@ import java.util.concurrent.TimeUnit;
 
 public class BasePage {
 
-    WaitUtils myWaitUtils;
+    TestUtils myTestUtils;
     public AndroidDriver<MobileElement> driver;
+    protected static ThreadLocal <String> dateTime = new ThreadLocal<String>();
 
     /**
      * Constructor
@@ -24,7 +25,11 @@ public class BasePage {
     public BasePage (AndroidDriver<MobileElement> driver) {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
         this.driver = driver;
-        myWaitUtils = new WaitUtils();
+        myTestUtils = new TestUtils();
+    }
+
+    public String getDateTime() {
+        return dateTime.get();
     }
 
 
@@ -32,7 +37,7 @@ public class BasePage {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", "Custom Phone_1");
         caps.setCapability("deviceManufacturer", "Genymotion");
-        //caps.setCapability("automationName", "UiAutomator2");
+        caps.setCapability("automationName", "UiAutomator2");
         //caps.setCapability("udid", "192.168.36.109:5555");
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "9.0");
@@ -40,7 +45,7 @@ public class BasePage {
         caps.setCapability("appActivity", "com.clarocolombia.miclaro.activities.Splash");
         caps.setCapability("noReset", "true");
         driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"),caps);
-        driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;
     }
 }
