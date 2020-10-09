@@ -21,7 +21,7 @@
     </build>
 
     <properties>
-        <appium.version>7.3.0</appium.version>
+        <appium.version>7.0.0</appium.version>
         <selenium.version>3.141.59</selenium.version>
     </properties>
 

@@ -5,7 +5,11 @@
             <listener class-name="listeners.TestListener" />
         </listeners>
         <classes>
-            <class name="test.postpago.postpagoTests.DetalleConsumosTests"></class>
+            <class name="test.postpago.postpagoTests.AdministraTusProductosTests">
+                <methods>
+                    <include name="cp004_ConsultarRecargasYPaquetes" />
+                </methods>
+            </class>
         </classes>
     </test>
 </suite> <!-- Suite -->
