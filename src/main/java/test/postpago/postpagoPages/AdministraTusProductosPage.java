@@ -12,6 +12,7 @@ import utils.TestUtils;
 
 import java.net.MalformedURLException;
 
+
 public class AdministraTusProductosPage extends BasePage {
 
     TestUtils testUtils = new TestUtils();
@@ -21,6 +22,7 @@ public class AdministraTusProductosPage extends BasePage {
      * @param driver : AndroidDriver
      *
      */
+
     public AdministraTusProductosPage(AndroidDriver<MobileElement> driver) throws MalformedURLException {
         super(driver);
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
@@ -39,8 +41,8 @@ public class AdministraTusProductosPage extends BasePage {
     @AndroidFindBy(id = "com.clarocolombia.miclaro.debug:id/contentSpinnerInicio")
     private AndroidElement lisHome;
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='3103021199']")
-    private AndroidElement lblLíneaPostpago;
+    String lineaPostpago;
+    By lblLíneaPostpago =  By.xpath("//android.widget.TextView[@text='" + lineaPostpago + "']");
 
     @AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
     private AndroidElement btnAtras;
@@ -50,12 +52,21 @@ public class AdministraTusProductosPage extends BasePage {
 
     By panelAdminProducts =  By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView");
 
+    @AndroidFindBy (xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[1]")
+    private AndroidElement btnPosicion1Parrilla1;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[2]")
+    private  AndroidElement btnPosicion2Parrilla1;
+
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[3]")
+    private  AndroidElement btnPosicion3Parrilla1;
+
+    @AndroidFindBy (id = "com.clarocolombia.miclaro.debug:id/btn_aceptar")
+    private AndroidElement btnCerrarMensajeError;
 
 
     //Detalle de consumos
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[1]")
-    private AndroidElement btnDetalleConsumos;
 
     @AndroidFindBy(id = "com.clarocolombia.miclaro.debug:id/txtUltimaActulizacion")
     private AndroidElement lblUltimaActualizacion;
@@ -63,14 +74,13 @@ public class AdministraTusProductosPage extends BasePage {
 
     //Paga Tu Factura
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[2]")
-    private AndroidElement btnPagaTuFactura;
+    @AndroidFindBy(id = "com.clarocolombia.miclaro.debug:id/tv_nombre_usuario")
+    private AndroidElement lblNombreUsuario;
+
 
 
     //Detalle de plan
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[3]")
-    private AndroidElement btDetalleDePlan;
 
     @AndroidFindBy(id = "com.clarocolombia.miclaro.debug:id/tv_plan")
     private AndroidElement lblPlanPostpago;
@@ -78,8 +88,14 @@ public class AdministraTusProductosPage extends BasePage {
 
     //Recargas y paquetes
 
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[3]")
-    private AndroidElement btnRecargasYPaquetes;
+    @AndroidFindBy (id = "com.clarocolombia.miclaro.debug:id/edtNumero")
+    private AndroidElement txtLineaPosRecargasPaquetes;
+
+    @AndroidFindBy (id = "com.clarocolombia.miclaro.debug:id/imgBack")
+    private AndroidElement btnAtrasRecargasPaquetes;
+
+
+
 
 
 
@@ -90,24 +106,17 @@ public class AdministraTusProductosPage extends BasePage {
 
     //General
 
-    public void clickBtnCancelarActualizar(){
-        testUtils.waitElement(btnCancelarActualizar);
-        btnCancelarActualizar.click();
-    }
-
-    public void setLisHome() {
-        testUtils.waitElement(lisHome);
-        lisHome.click();
-    }
-
-    public void clicklblLíneaPostpago() {
+    public void clickLineaPostpago(String linea){
+        By lblLíneaPostpago =  By.xpath("//android.widget.TextView[@text='" + linea + "']");
         testUtils.waitElement(lblLíneaPostpago);
-        lblLíneaPostpago.click();
+        driver.findElement(lblLíneaPostpago).click();
     }
 
-    public String getlblLíneaPostpago(){
+    public String getlblLíneaPostpago(String linea){
+        By lblLíneaPostpago =  By.xpath("//android.widget.TextView[@text='" + linea + "']");
         testUtils.waitElement(lblUltimaActualizacion);
-        String txtLblLíneaPostpago = lblLíneaPostpago.getText();
+        testUtils.waitElement(lblLíneaPostpago);
+        String txtLblLíneaPostpago = driver.findElement(lblLíneaPostpago).getText();
         return txtLblLíneaPostpago;
     }
 
@@ -119,11 +128,6 @@ public class AdministraTusProductosPage extends BasePage {
 
     //Detalle de Consumos
 
-    public void clickBtnDetalleConsumos() {
-        testUtils.waitElement(btnDetalleConsumos);
-        btnDetalleConsumos.click();
-    }
-
     public String getLblUltimaActualizacion(){
         testUtils.waitElement(lblUltimaActualizacion);
         String txtUltimaActualizacion = lblUltimaActualizacion.getText();
@@ -131,34 +135,18 @@ public class AdministraTusProductosPage extends BasePage {
     }
 
 
-    //Paga Tu Factura
-
-    public void clicBtnPagaTuFactura(){
-        testUtils.waitElement(btnPagaTuFactura);
-        btnPagaTuFactura.click();
-    }
-
-
-    //Detalle de plan
-    public void clickBtDetalleDePlan(){
-        testUtils.waitElement(btDetalleDePlan);
-        btDetalleDePlan.click();
-    }
-
-    public void getLblPlanPostpago(){
-        testUtils.waitElement(lblPlanPostpago);
-        lblPlanPostpago.getText();
-    }
-
-
     //Recargas y Paquetes
 
-    public void clickBtnRecargasYPaquetes() throws Exception {
-        testUtils.waitElement(btDetalleDePlan);
-        horizontalScroll(panelAdminProducts);
-        btnDetalleConsumos.click();
+    public String getTxtLineaPosRecargasPaquetes(){
+        testUtils.waitElement(txtLineaPosRecargasPaquetes);
+        String lineaPosPaquetesRecargas = txtLineaPosRecargasPaquetes.getText();
+        return lineaPosPaquetesRecargas;
     }
 
+    public void clickBtnAtrasRecargasPaquetes() throws InterruptedException {
+        testUtils.clickElement(btnAtrasRecargasPaquetes);
+
+    }
 
 
 
@@ -166,26 +154,26 @@ public class AdministraTusProductosPage extends BasePage {
      * Main Method
      */
 
-    public void checkDetalleConsumos() {
-        this.clickBtnCancelarActualizar();
-        this.setLisHome();
-        this.clicklblLíneaPostpago();
-        this.clickBtnDetalleConsumos();
-        this.getLblUltimaActualizacion();
+    public void checkDetalleConsumos(String linea)  {
+        testUtils.clickElement(btnCancelarActualizar);
+        testUtils.clickElement(lisHome);
+        clickLineaPostpago(linea);
+        testUtils.clickElement(btnPosicion1Parrilla1);
     }
 
-    public void checkPagaTuFactura(){
-        this.clicBtnPagaTuFactura();
-        this.getlblLíneaPostpago();
+    public void checkPagaTuFactura() {
+        testUtils.clickElement(btnPosicion2Parrilla1);
+        testUtils.getElement(lblNombreUsuario);
     }
 
-    public void checkDetalleDePlan(){
-        this.clickBtDetalleDePlan();
-        this.getlblLíneaPostpago();
-        this.getLblPlanPostpago();
+    public void checkDetalleDePlan() {
+        testUtils.clickElement(btnPosicion3Parrilla1);
+        testUtils.getElement(lblPlanPostpago);
     }
 
-    public void checkRecargasYPaquetes() throws Exception {
-        this.clickBtnRecargasYPaquetes();
+    public void checkRecargasYPaquetes() {
+        testUtils.horizontalScrollClickElement(btnPosicion1Parrilla1, panelAdminProducts);
+        getTxtLineaPosRecargasPaquetes();
     }
+
 }

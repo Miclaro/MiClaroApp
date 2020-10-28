@@ -2,7 +2,8 @@ package main;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeSuite;
 import test.postpago.postpagoPages.AdministraTusProductosPage;
 
 import java.net.MalformedURLException;
@@ -15,15 +16,17 @@ public class BaseTest {
     protected AdministraTusProductosPage administraTusProductosPage;
 
 
-    @BeforeTest(alwaysRun = true)
+    @BeforeSuite(alwaysRun = true)
     public void beforeTest() throws MalformedURLException {
-        this.basePage = new BasePage(driver);
-        this.administraTusProductosPage = new AdministraTusProductosPage(this.basePage.getDriver());
+        basePage = new BasePage(driver);
+        administraTusProductosPage = new AdministraTusProductosPage(basePage.getDriver());
     }
 
 
-    /** @AfterSuite
-    public void quitDriver() throws MalformedURLException {
-        this.basePage.getDriver().quit();
-    }**/
+    @AfterMethod(alwaysRun = true)
+    public void allowAlert() {
+        basePage.allowAlert();
+        basePage.driver.navigate().back();
+
+    }
 }

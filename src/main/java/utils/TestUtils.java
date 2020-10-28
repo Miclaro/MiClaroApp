@@ -3,13 +3,15 @@ package utils;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import main.BaseTest;
+import io.appium.java_client.android.AndroidElement;
+import main.BasePage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -17,19 +19,18 @@ import org.w3c.dom.NodeList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import java.io.*;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 import java.util.HashMap;
 
-public class TestUtils {
+public class TestUtils{
 
-    //public AndroidDriver<MobileElement> driver;
+    public AndroidDriver<MobileElement> appiumDriver;
     protected static ThreadLocal <AppiumDriver> driver = new ThreadLocal<AppiumDriver>();
-
     public static final long WAIT = 10;
+
 
     public HashMap<String, String> parseStringXML(InputStream file) throws Exception{
         HashMap<String, String> stringMap = new HashMap<String, String>();
@@ -73,18 +74,18 @@ public class TestUtils {
     }
 
 
-    public AppiumDriver getDriver() {
-        return driver.get();
+    public AndroidDriver<MobileElement> getDriver() {
+        return (AndroidDriver<MobileElement>) driver.get();
     }
 
-    public boolean waitElement(WebElement element){
+    public boolean waitElement(AndroidElement element){
         try{
 
             WebDriverWait wait = new WebDriverWait(getDriver(), TestUtils.WAIT);
 
             ExpectedCondition<WebElement> cond1 = ExpectedConditions.elementToBeClickable(element);
-            // ExpectedCondition<WebElement> cond2 = ExpectedConditions.visibilityOf(element);
-            // ExpectedCondition<Boolean> cond = ExpectedConditions.and(cond1, cond2);
+            ExpectedCondition<WebElement> cond2 = ExpectedConditions.visibilityOf(element);
+            ExpectedCondition<Boolean> cond = ExpectedConditions.and(cond1, cond2);
 
             wait.until(cond1);
             return true;
@@ -94,18 +95,29 @@ public class TestUtils {
     }
 
 
-    public void waitForVisibility(MobileElement element) {
-        WebDriverWait wait = new WebDriverWait(getDriver(), TestUtils.WAIT);
-        wait.until(ExpectedConditions.visibilityOf(element));
+    public void waitElement(By element){
+        WebDriverWait wait = new WebDriverWait(BasePage.driver, TestUtils.WAIT);
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        wait.until(ExpectedConditions.presenceOfElementLocated(element));
     }
-/**
-    public void waitForVisibility(WebElement e){
-        Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-                .withTimeout(Duration.ofSeconds(30))
-                .pollingEvery(Duration.ofSeconds(5))
-                .ignoring(NoSuchElementException.class);
 
-        wait.until(ExpectedConditions.visibilityOf(e));
-    } **/
+    public void clickElement(AndroidElement element)   {
+        waitElement(element);
+        element.click();
+    }
+
+    public void getElement(AndroidElement element)  {
+        waitElement(element);
+        element.getText();
+    }
+
+
+    public void horizontalScrollClickElement(AndroidElement element, By panel)  {
+        waitElement(element);
+        BasePage.horizontalScroll(panel);
+        element.click();
+    }
 
 }
+
+

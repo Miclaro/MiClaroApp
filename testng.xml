@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Suite" parallel="tests">
+    <parameter name="lineaPostpago" value="3103021199"/>
     <test name="Pixel_2">
         <listeners>
             <listener class-name="listeners.TestListener" />
@@ -7,7 +8,7 @@
         <classes>
             <class name="test.postpago.postpagoTests.AdministraTusProductosTests">
                 <methods>
-                    <include name="cp004_ConsultarRecargasYPaquetes" />
+                    <!--  <include name="cp004_ConsultarRecargasYPaquetes" /> -->
                 </methods>
             </class>
         </classes>

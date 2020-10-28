@@ -9,7 +9,6 @@ import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.PageFactory;
-import utils.TestUtils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -20,9 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BasePage {
 
-    TestUtils testUtils = new TestUtils();
-    //AndroidDriver driver;
-    public AndroidDriver<MobileElement> driver;
+    public static AndroidDriver<MobileElement> driver;
     protected static ThreadLocal<String> dateTime = new ThreadLocal<String>();
 
     /**
@@ -35,7 +32,7 @@ public class BasePage {
         this.driver = pageDriver;
     }
 
-    public String getDateTime() {
+    public static String getDateTime() {
         return dateTime.get();
     }
 
@@ -51,6 +48,8 @@ public class BasePage {
         caps.setCapability("appPackage", "com.clarocolombia.miclaro.debug");
         caps.setCapability("appActivity", "com.clarocolombia.miclaro.activities.Splash");
         caps.setCapability("noReset", "true");
+        caps.setCapability("autoAcceptAlerts", true);
+        caps.setCapability("autoGrantPermissions", "true");
         driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         return driver;
@@ -58,7 +57,7 @@ public class BasePage {
 
 
 
-    public void horizontalScroll(By panel){
+    public static void horizontalScroll(By panel){
         //com.clarocolombia.miclaro.debug:id/rvAdminProducts
        List<MobileElement> e = driver.findElements(panel);
 
@@ -77,6 +76,29 @@ public class BasePage {
                 .release()
                 .perform();
 
+    }
+
+    public static void allowAlert()  {
+        List<?> button = driver.findElements(By.id("com.clarocolombia.miclaro.debug:id/btn_aceptar"));
+
+        if(button.isEmpty()){
+            System.out.println("Inside IF");
+        }
+        else{
+            driver.findElement(By.id("com.clarocolombia.miclaro.debug:id/btn_aceptar")).click();
+        }
+    }
+
+
+
+    public static void alertPopupIsPresent() {
+        boolean alertPopupDisplayed = driver.findElement(By.id("com.clarocolombia.miclaro.debug:id/custom")).isDisplayed();
+        System.out.println("alertPopupDisplayed - " + alertPopupDisplayed);
+        if(!alertPopupDisplayed){
+            System.out.println("Inside IF");
+        }else{
+            driver.findElement(By.id("com.clarocolombia.miclaro.debug:id/btn_aceptar")).click();
+        }
     }
 
 }
