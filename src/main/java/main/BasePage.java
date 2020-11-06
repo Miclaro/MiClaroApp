@@ -1,9 +1,11 @@
 package main;
 
+
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
@@ -20,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class BasePage {
 
     public static AndroidDriver<MobileElement> driver;
-    protected static ThreadLocal<String> dateTime = new ThreadLocal<String>();
+    protected static ThreadLocal<String> dateTime = new ThreadLocal<>();
 
     /**
      * Constructor
@@ -41,7 +43,7 @@ public class BasePage {
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("deviceName", "Custom Phone_1");
         caps.setCapability("deviceManufacturer", "Genymotion");
-        caps.setCapability("automationName", "UiAutomator2");
+        caps.setCapability(MobileCapabilityType. AUTOMATION_NAME, "UiAutomator2");
         //caps.setCapability("udid", "192.168.36.109:5555");
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "9.0");
@@ -50,8 +52,8 @@ public class BasePage {
         caps.setCapability("noReset", "true");
         caps.setCapability("autoAcceptAlerts", true);
         caps.setCapability("autoGrantPermissions", "true");
-        driver = new AndroidDriver<MobileElement>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
     }
 
@@ -78,28 +80,29 @@ public class BasePage {
 
     }
 
+
     public static void allowAlert()  {
-        List<?> button = driver.findElements(By.id("com.clarocolombia.miclaro.debug:id/btn_aceptar"));
+       List<MobileElement> alert;
+       boolean alertIsPresent = true;
 
-        if(button.isEmpty()){
-            System.out.println("Inside IF");
+        while (alertIsPresent == true) {
+
+           driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+           alert = driver.findElements(By.id("com.clarocolombia.miclaro.debug:id/btn_aceptar"));
+
+
+            if (alert.size()!=0){
+                //driver.findElement(By.id("com.clarocolombia.miclaro.debug:id/btn_aceptar")).click();
+                alert.get(0).click();
+                alertIsPresent = true;
+
+            } else {
+                alertIsPresent = false;
+                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+            }
         }
-        else{
-            driver.findElement(By.id("com.clarocolombia.miclaro.debug:id/btn_aceptar")).click();
         }
-    }
 
-
-
-    public static void alertPopupIsPresent() {
-        boolean alertPopupDisplayed = driver.findElement(By.id("com.clarocolombia.miclaro.debug:id/custom")).isDisplayed();
-        System.out.println("alertPopupDisplayed - " + alertPopupDisplayed);
-        if(!alertPopupDisplayed){
-            System.out.println("Inside IF");
-        }else{
-            driver.findElement(By.id("com.clarocolombia.miclaro.debug:id/btn_aceptar")).click();
-        }
-    }
 
 }
 
