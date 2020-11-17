@@ -112,11 +112,10 @@ public class TestUtils{
     }
 
 
-    public void horizontalScrollClickElement(AndroidElement element, By panel)  {
-        waitElement(element);
+    public void horizontalScroll(By panel)  {
         BasePage.horizontalScroll(panel);
-        element.click();
     }
+
 
 }
 

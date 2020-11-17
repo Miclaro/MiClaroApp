@@ -31,7 +31,7 @@ public class BasePage {
      */
     public BasePage(AndroidDriver<MobileElement> pageDriver) {
         PageFactory.initElements(new AppiumFieldDecorator(pageDriver), this);
-        this.driver = pageDriver;
+        driver = pageDriver;
     }
 
     public static String getDateTime() {
@@ -47,13 +47,13 @@ public class BasePage {
         //caps.setCapability("udid", "192.168.36.109:5555");
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "9.0");
-        caps.setCapability("appPackage", "com.clarocolombia.miclaro.debug");
+        caps.setCapability("appPackage", "com.clarocolombia.miclaro");
         caps.setCapability("appActivity", "com.clarocolombia.miclaro.activities.Splash");
         caps.setCapability("noReset", "true");
         caps.setCapability("autoAcceptAlerts", true);
         caps.setCapability("autoGrantPermissions", "true");
         driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         return driver;
     }
 
@@ -66,7 +66,7 @@ public class BasePage {
        MobileElement firstElement = e.get(0);
        MobileElement thirddElement = e.get(3);
 
-       int yCoordinate = firstElement.getLocation().y + (firstElement.getSize().height/2);
+       int yCoordinate = firstElement.getLocation().y + (firstElement.getSize().height/4);
        int xCoordinate = firstElement.getLocation().x;
        int xcoordinateThirdElement = thirddElement.getLocation().x;
 
@@ -88,7 +88,7 @@ public class BasePage {
         while (alertIsPresent == true) {
 
            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-           alert = driver.findElements(By.id("com.clarocolombia.miclaro.debug:id/btn_aceptar"));
+           alert = driver.findElements(By.id("com.clarocolombia.miclaro:id/btn_aceptar"));
 
 
             if (alert.size()!=0){
@@ -98,9 +98,14 @@ public class BasePage {
 
             } else {
                 alertIsPresent = false;
-                driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             }
         }
+        }
+
+
+        public static void refreshApp(){
+            driver.findElement(By.id("com.clarocolombia.miclaro:id/navigationInicioMenu")).click();
         }
 
 

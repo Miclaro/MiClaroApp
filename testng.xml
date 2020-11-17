@@ -6,9 +6,9 @@
             <listener class-name="listeners.TestListener" />
         </listeners>
         <classes>
-            <class name="test.postpago.postpagoTests.AdministraTusProductosTests">
+            <class name="test.postpago.postpagoTests.AdministraTusProductosPosTests">
                 <methods>
-                    <!--  <include name="cp004_ConsultarRecargasYPaquetes" /> -->
+                     <!-- <include name="pos004_ConsultarRecargasYPaquetes" /> -->
                 </methods>
             </class>
         </classes>
