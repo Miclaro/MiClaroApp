@@ -15,6 +15,7 @@ public class AdministraTusProductosPosPage extends BasePage {
 
     TestUtils testUtils = new TestUtils();
 
+
     /**
      * Constructor
      * @param driver : AndroidDriver
@@ -151,7 +152,6 @@ public class AdministraTusProductosPosPage extends BasePage {
 
     public String getlblLíneaPostpago(String linea){
         By lblLíneaPostpago =  By.xpath("//android.widget.TextView[@text='" + linea + "']");
-        testUtils.waitElement(txtUltimaActualizacion);
         testUtils.waitElement(lblLíneaPostpago);
         String txtLblLíneaPostpago = driver.findElement(lblLíneaPostpago).getText();
         return txtLblLíneaPostpago;

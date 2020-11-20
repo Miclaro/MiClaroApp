@@ -44,7 +44,7 @@ public class BasePage {
         caps.setCapability("deviceName", "Custom Phone_1");
         caps.setCapability("deviceManufacturer", "Genymotion");
         caps.setCapability(MobileCapabilityType. AUTOMATION_NAME, "UiAutomator2");
-        //caps.setCapability("udid", "192.168.36.109:5555");
+        //caps.setCapability("udid", "192.168.36.109:5555"); UiAutomator2
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "9.0");
         caps.setCapability("appPackage", "com.clarocolombia.miclaro");
@@ -80,6 +80,17 @@ public class BasePage {
 
     }
 
+    public static void verticalScroll(){
+
+
+        TouchAction action = new TouchAction(driver);
+        action.press(PointOption.point(17, 897))
+                .waitAction(WaitOptions.waitOptions(Duration.ofSeconds(3)))
+                .moveTo(PointOption.point(17, 589))
+                .release()
+                .perform();
+
+    }
 
     public static void allowAlert()  {
        List<MobileElement> alert;

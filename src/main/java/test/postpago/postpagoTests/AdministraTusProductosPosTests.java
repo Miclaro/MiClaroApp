@@ -3,6 +3,9 @@ package test.postpago.postpagoTests;
 import main.BaseTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import test.postpago.postpagoPages.AdministraTusProductosPosPage;
+
+import java.net.MalformedURLException;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -10,10 +13,13 @@ import static org.testng.Assert.assertTrue;
 
 public class AdministraTusProductosPosTests extends BaseTest {
 
+    protected AdministraTusProductosPosPage administraTusProductosPage;
+
 
     @Test (priority = 0, alwaysRun = true)
     @Parameters({"lineaPostpago"})
-    public void pos001_ConsultarDetalleConsumosdatos(String lineaPostpago) {
+    public void pos001_ConsultarDetalleConsumosdatos(String lineaPostpago) throws MalformedURLException {
+        this.administraTusProductosPage = new AdministraTusProductosPosPage(basePage.getDriver());
         this.administraTusProductosPage.checkDetalleConsumos(lineaPostpago);
         assertTrue(administraTusProductosPage.getTxtUltimaActualizacion().contains("Actualizado"), "successful detalle de consumos");
     }

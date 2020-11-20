@@ -116,6 +116,10 @@ public class TestUtils{
         BasePage.horizontalScroll(panel);
     }
 
+    public void verticalScroll( )  {
+        BasePage.verticalScroll();
+    }
+
 
 }
 

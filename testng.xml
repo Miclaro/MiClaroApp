@@ -5,12 +5,18 @@
         <listeners>
             <listener class-name="listeners.TestListener" />
         </listeners>
-        <classes>
-            <class name="test.postpago.postpagoTests.AdministraTusProductosPosTests">
-                <methods>
-                     <!-- <include name="pos004_ConsultarRecargasYPaquetes" /> -->
-                </methods>
-            </class>
+         <classes>
+           <class name="test.postpago.postpagoTests.AdministraTusProductosPosTests"/>
+             <class name="test.postpago.postpagoTests.AtencionAlClienteYSoportePosTests"/>
+             <class name="test.postpago.postpagoTests.MasBeneficiosPosTests"/>
+             <class name="test.postpago.postpagoTests.EntretenimientoPosTests"/>
+
+
+             <!--   <methods>
+                      <include name="pos004_ConsultarRecargasYPaquetes" />
+                </methods> -->
+
         </classes>
+
     </test>
 </suite> <!-- Suite -->
