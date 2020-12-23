@@ -21,7 +21,14 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Appium Server Action
-      uses: moatazeldebsy/Appium-Server-GitHub-Action@V1.0.5
+    
+    - name: install appium
+      uses: actions/setup-node@v1
+    - run: npm install -g appium
+      
+    - name: install Win App driver
+      uses: actions/setup-node@v1
+    - run: npm install -g appium-windows-driver
+    
     - name: Build with Maven
       run: mvn test -DdefaultSuiteFiles="./testng.xml,"
