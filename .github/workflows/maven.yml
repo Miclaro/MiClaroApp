@@ -25,4 +25,4 @@ jobs:
   # uses: moatazeldebsy/Appium-Server-GitHub-Action@05d9d683e555e7636d68a48360f1cf7c117ddda5
       uses: moatazeldebsy/Appium-Server-GitHub-Action@V1.0.5
     - name: Build with Maven
-      run: mvn test --file pom.xml
+      run: mvn test -DdefaultSuiteFiles="./testng.xml,"
