@@ -13,16 +13,16 @@ public class MasBeneficiosPosTests extends BaseTest {
     protected MasBeneficiosPosPage masBeneficiosPosPage;
 
 
-    @Test (priority = 21, alwaysRun = true)
+    @Test (priority = 23, alwaysRun = true)
     @Parameters({"lineaPostpago"})
-    public void pos022_ClaroBot(String lineaPostpago) throws MalformedURLException {
+    public void pos022_ClaroClub(String lineaPostpago) throws MalformedURLException {
         this.masBeneficiosPosPage = new MasBeneficiosPosPage(basePage.getDriver());
         this.masBeneficiosPosPage.checkClaroClub(lineaPostpago);
       //  assertTrue(administraTusProductosPage.getTxtUltimaActualizacion().contains("Actualizado"), "successful detalle de consumos");
     }
 
 
-    @Test (priority = 22, alwaysRun = true)
+    @Test (priority = 24, alwaysRun = true)
     @Parameters({"lineaPostpago"} )
     public void pos023_FamiliaYAmigos(String lineaPostpago)  {
         this.masBeneficiosPosPage.checkFamiliaAmigos(lineaPostpago);
@@ -30,17 +30,10 @@ public class MasBeneficiosPosTests extends BaseTest {
     }
 
 
-    @Test (priority = 23, alwaysRun = true)
-    @Parameters({"lineaPostpago"})
-    public void pos024_Recomendados(String lineaPostpago)   {
-        this.masBeneficiosPosPage.checkRecomendados(lineaPostpago);
-       // assertEquals(administraTusProductosPage.getlblLíneaPostpago(lineaPostpago),lineaPostpago);
-    }
 
-
-    @Test (priority = 24, alwaysRun = true)
+    @Test (priority = 25, alwaysRun = true)
     @Parameters({"lineaPostpago"})
-    public void pos025_DatosCompartidos(String lineaPostpago) {
+    public void pos024_DatosCompartidos(String lineaPostpago) {
         this.masBeneficiosPosPage.checkDatosCompartidos(lineaPostpago);
         //assertEquals(administraTusProductosPage.getTxtLineaPosRecargasPaquetes(), lineaPostpago);
     }

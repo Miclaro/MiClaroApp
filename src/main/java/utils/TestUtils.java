@@ -116,11 +116,18 @@ public class TestUtils{
         BasePage.horizontalScroll(panel);
     }
 
+    public void horizontalScrollSecondElement(By panel)  {
+        BasePage.horizontalScrollSecondElement(panel);
+    }
+
     public void verticalScroll( )  {
         BasePage.verticalScroll();
     }
 
 
+    public void switchContextToWebview(){
+ 
+    }
 }
 
 

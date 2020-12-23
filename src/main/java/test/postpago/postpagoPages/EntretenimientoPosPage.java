@@ -6,9 +6,13 @@ import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import main.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import test.home.homePages.HomePage;
 import utils.TestUtils;
+
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class EntretenimientoPosPage extends BasePage {
@@ -44,6 +48,9 @@ public class EntretenimientoPosPage extends BasePage {
     @AndroidFindBy(id = "com.clarocolombia.miclaro:id/web_view")
     private AndroidElement webViewRedEnVivo;
 
+    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View")
+    private AndroidElement boxPlayer;
+
 
     //Claro Video
 
@@ -69,6 +76,9 @@ public class EntretenimientoPosPage extends BasePage {
     @AndroidFindBy(xpath = "//android.view.View[@index=0]")
     private AndroidElement webViewPruebaT;
 
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Leer más']/android.widget.TextView")
+    private AndroidElement lblLeerMas;
+
 
     //Revista 15 minutos
 
@@ -79,6 +89,20 @@ public class EntretenimientoPosPage extends BasePage {
     private AndroidElement btnActivarRevista15Minutos;
 
 
+    //Recomendados
+
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Contenido exclusivo Claro']")
+    private AndroidElement txtRecomendados;
+
+
+    //Free Apps
+
+    @AndroidFindBy(id = "com.android.packageinstaller:id/permission_allow_button")
+    private  AndroidElement btnAllowfreeApps;
+
+
+    @AndroidFindBy(id = "com.clarocolombia.miclaro:id/tv_know_more_message_2")
+    private AndroidElement lblFreeApps;
 
 
     /**
@@ -87,19 +111,23 @@ public class EntretenimientoPosPage extends BasePage {
 
     //General
 
-    public void goToMasBeneficiosPanel(String linea){
+    public void goToEntretenimientoPanel(String linea){
+        testUtils.getElement(homePage.btnPosicion1Parrilla1);
         testUtils.clickElement(homePage.lisHome);
         homePage.clickLineaPostpago(linea);
         testUtils.getElement(homePage.btnPosicion1Parrilla1);
         testUtils.verticalScroll();
         testUtils.verticalScroll();
+
     }
 
 
     //Claro Gaming
 
     public void checkClaroGaming(String linea){
-        goToMasBeneficiosPanel(linea);
+        goToEntretenimientoPanel(linea);
+        testUtils.horizontalScroll(homePage.panelEntretenimiento);
+        testUtils.horizontalScrollSecondElement(homePage.panelEntretenimiento);
         testUtils.clickElement(homePage.btnPosicion1Parrilla4);
         testUtils.getElement(txtVentaVideojuegos);
 
@@ -108,10 +136,10 @@ public class EntretenimientoPosPage extends BasePage {
 
     //Red en vivo
 
-    public void checkRedEnVivo(String linea){
-        goToMasBeneficiosPanel(linea);
-        testUtils.clickElement(homePage.btnPosicion2Parrilla4);
-        testUtils.getElement(webViewRedEnVivo);
+    public void checkRedEnVivo(String linea) throws InterruptedException {
+        goToEntretenimientoPanel(linea);
+        testUtils.clickElement(homePage.btnPosicion1Parrilla4);
+        testUtils.getElement(boxPlayer);
 
     }
 
@@ -119,8 +147,10 @@ public class EntretenimientoPosPage extends BasePage {
     //Claro Video
 
     public void checkClaroVideo(String linea){
-        goToMasBeneficiosPanel(linea);
-        testUtils.clickElement(homePage.btnPosicion3Parrilla4);
+        goToEntretenimientoPanel(linea);
+        testUtils.horizontalScroll(homePage.panelEntretenimiento);
+        testUtils.horizontalScrollSecondElement(homePage.panelEntretenimiento);
+        testUtils.clickElement(homePage.btnPosicion2Parrilla4);
         testUtils.getElement(txtClaroVideoGooglePlay);
 
     }
@@ -129,9 +159,8 @@ public class EntretenimientoPosPage extends BasePage {
     //Claro Música
 
     public void checkClaroMusica(String linea){
-        goToMasBeneficiosPanel(linea);
-        testUtils.horizontalScroll(homePage.panelEntretenimiento);
-        testUtils.clickElement(homePage.btnPosicion1Parrilla4);
+        goToEntretenimientoPanel(linea);
+        testUtils.clickElement(homePage.btnPosicion2Parrilla4);
         testUtils.getElement(txtClaroMusicaGooglePlay);
 
     }
@@ -140,9 +169,10 @@ public class EntretenimientoPosPage extends BasePage {
     //Tonos de espera
 
     public void checkTonosDeEspera(String linea){
-        goToMasBeneficiosPanel(linea);
+        goToEntretenimientoPanel(linea);
         testUtils.horizontalScroll(homePage.panelEntretenimiento);
-        testUtils.clickElement(homePage.btnPosicion2Parrilla4);
+        testUtils.horizontalScrollSecondElement(homePage.panelEntretenimiento);
+        testUtils.clickElement(homePage.btnPosicion3Parrilla4);
         testUtils.getElement(txtTonosEsperaGooglePlay);
     }
 
@@ -150,10 +180,11 @@ public class EntretenimientoPosPage extends BasePage {
     //PruébaT
 
     public void checkPruebaT(String linea){
-        goToMasBeneficiosPanel(linea);
+        goToEntretenimientoPanel(linea);
+        testUtils.horizontalScroll(homePage.panelEntretenimiento);
         testUtils.horizontalScroll(homePage.panelEntretenimiento);
         testUtils.clickElement(homePage.btnPosicion3Parrilla4);
-        testUtils.getElement(webViewPruebaT);
+        testUtils.getElement(lblLeerMas);
     }
 
 
@@ -161,7 +192,8 @@ public class EntretenimientoPosPage extends BasePage {
     //Revista 15 minutos
 
     public void checkRevista15Minutos(String linea){
-        goToMasBeneficiosPanel(linea);
+        goToEntretenimientoPanel(linea);
+        testUtils.horizontalScroll(homePage.panelEntretenimiento);
         testUtils.horizontalScroll(homePage.panelEntretenimiento);
         testUtils.clickElement(homePage.btnPosicion4Parrilla4);
         testUtils.getElement(txtRevista15Minutos);
@@ -169,4 +201,118 @@ public class EntretenimientoPosPage extends BasePage {
     }
 
 
-}
+
+    //Recomendados
+
+
+    public void checkRecomendados(String linea){
+        goToEntretenimientoPanel(linea);
+        testUtils.clickElement(homePage.btnPosicion3Parrilla4);
+        testUtils.getElement(txtRecomendados);
+
+    }
+
+
+    //Navega Gratis FreeApps
+
+
+    public void checkNavegaGratisFreeApps(String linea){
+        goToEntretenimientoPanel(linea);
+        testUtils.horizontalScroll(homePage.panelEntretenimiento);
+        testUtils.horizontalScroll(homePage.panelEntretenimiento);
+        testUtils.clickElement(homePage.btnPosicion2Parrilla4);
+        allowAlertFreeApps();
+        continueFreeApps();
+        continueFreeApps2();
+        testUtils.getElement(lblFreeApps);
+
+        }
+
+    public void allowAlertFreeApps()  {
+        List<MobileElement> alert1;
+        List<MobileElement> alert2;
+        List<MobileElement> alert3;
+
+        boolean alertIsPresent = true;
+
+        while (alertIsPresent == true) {
+
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+            alert1 = driver.findElements(By.id("com.android.packageinstaller:id/permission_allow_button"));
+            alert2 = driver.findElements(By.id("com.clarocolombia.miclaro:id/tv_dialog_button"));
+            alert3 = driver.findElements(By.id("android:id/button1"));
+
+            if (alert1.size()!=0){
+                alert1.get(0).click();
+                alertIsPresent = true;
+
+            }else{
+                if (alert2.size()!=0){
+                    alert2.get(0).click();
+                    alertIsPresent = true;
+
+                } else{
+                    if (alert3.size()!=0){
+                    alert3.get(0).click();
+                    alertIsPresent = true;
+
+                } else {
+                        alertIsPresent = false;
+                        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                    }
+
+                }
+            }
+
+
+        }
+    }
+
+    public void continueFreeApps()  {
+        List<MobileElement> alert2;
+        boolean alertIsPresent = true;
+
+        while (alertIsPresent == true) {
+
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            alert2 = driver.findElements(By.id("com.clarocolombia.miclaro:id/tv_dialog_button"));
+
+
+            if (alert2.size()!=0){
+                alert2.get(0).click();
+                alertIsPresent = true;
+
+            } else {
+                alertIsPresent = false;
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            }
+        }
+    }
+
+    public void continueFreeApps2()  {
+        List<MobileElement> alert3;
+        boolean alertIsPresent = true;
+
+        while (alertIsPresent == true) {
+
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            alert3 = driver.findElements(By.id("android:id/button1"));
+
+
+            if (alert3.size()!=0){
+                alert3.get(0).click();
+                alertIsPresent = true;
+
+            } else {
+                alertIsPresent = false;
+                driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+            }
+        }
+    }
+
+
+
+
+
+    }
+

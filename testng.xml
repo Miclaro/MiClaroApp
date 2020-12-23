@@ -6,15 +6,15 @@
             <listener class-name="listeners.TestListener" />
         </listeners>
          <classes>
-           <class name="test.postpago.postpagoTests.AdministraTusProductosPosTests"/>
-             <class name="test.postpago.postpagoTests.AtencionAlClienteYSoportePosTests"/>
-             <class name="test.postpago.postpagoTests.MasBeneficiosPosTests"/>
-             <class name="test.postpago.postpagoTests.EntretenimientoPosTests"/>
+              <class name="test.postpago.postpagoTests.AdministraTusProductosPosTests"/>
+              <class name="test.postpago.postpagoTests.AtencionAlClienteYSoportePosTests"/>
+              <class name="test.postpago.postpagoTests.MasBeneficiosPosTests"/>
+               <class name="test.postpago.postpagoTests.EntretenimientoPosTests"/>
 
-
-             <!--   <methods>
-                      <include name="pos004_ConsultarRecargasYPaquetes" />
-                </methods> -->
+              <!--   <methods>
+                     <include name = "pos001_ConsultarDetalleConsumosdatos"/>
+                       <include name="pos009_AdquiereLineaPos" />
+                 </methods> -->
 
         </classes>
 

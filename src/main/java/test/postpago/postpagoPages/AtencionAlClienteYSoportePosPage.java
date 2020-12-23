@@ -38,11 +38,17 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='! ¡Te doy la bienvenida!']")
     private AndroidElement txtChatBotBienvenida;
 
+    @AndroidFindBy(xpath = "//android.widget.Image[@text='icon-avatar']")
+    private AndroidElement iconBot;
+
 
     //Agendar turnos
 
     @AndroidFindBy(id = "com.clarocolombia.miclaro:id/web_view")
     private AndroidElement webViewAgendarTurnos;
+
+    @AndroidFindBy(xpath = "//android.view.View[@text='Agendar Turno']")
+    private AndroidElement lblAgendarTurno;
 
 
 
@@ -75,8 +81,8 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
     //Consulta estado de PQR
 
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Actualmente no cuentas con equipos financiados.']")
-    private AndroidElement txtNoEquiposFinanciados;
+    @AndroidFindBy(xpath = "//android.view.View[@text='Consulta estado de PQR Soluciones Móviles']")
+    private AndroidElement lblConsultaEstadoPQR;
 
 
     //Consulta tus servicios técnicos
@@ -112,13 +118,14 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
      */
 
 
+
+
     //ClaroBot
 
     public void checkClaroBot(String linea){
-        testUtils.clickElement(homePage.lisHome);
-        homePage.clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.clickElement(homePage.btnPosicion1Parrilla2);
-        testUtils.getElement(txtChatBotBienvenida);
+        testUtils.getElement(iconBot);
     }
 
 
@@ -126,10 +133,11 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
     //Agendar turnos
 
     public void checkAgendarTurnos(String linea){
+        testUtils.getElement(homePage.btnPosicion1Parrilla1);
         testUtils.clickElement(homePage.lisHome);
         homePage.clickLineaPostpago(linea);
         testUtils.clickElement(homePage.btnPosicion2Parrilla2);
-        testUtils.getElement(webViewAgendarTurnos);
+        testUtils.getElement(lblAgendarTurno);
     }
 
 
@@ -137,19 +145,20 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
 
 
     public void checkGestionaTuEquipo(String linea){
-        testUtils.clickElement(homePage.lisHome);
-        homePage.clickLineaPostpago(linea);
-        testUtils.clickElement(homePage.btnPosicion3Parrilla2);
+        homePage.setLinea(linea);
+        testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
+        testUtils.horizontalScrollSecondElement(homePage.panelAtencionAlClienteYSoporte);
+        testUtils.clickElement(homePage.btnPosicion1Parrilla2);
         testUtils.getElement(txtGestionaTuEquipo);
     }
 
     //Adquirir productos
 
     public void checkAdquirirProductos(String linea){
-        testUtils.clickElement(homePage.lisHome);
-        homePage.clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
-        testUtils.clickElement(homePage.btnPosicion1Parrilla2);
+        testUtils.horizontalScrollSecondElement(homePage.panelAtencionAlClienteYSoporte);
+        testUtils.clickElement(homePage.btnPosicion2Parrilla2);
         testUtils.getElement(txtAdquirirProductos);
     }
 
@@ -157,10 +166,10 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
     //Resuelve fallas de tus servicios
 
     public void checkResuelveFallasServicios(String linea){
-        testUtils.clickElement(homePage.lisHome);
-        homePage.clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
-        testUtils.clickElement(homePage.btnPosicion2Parrilla2);
+        testUtils.horizontalScrollSecondElement(homePage.panelAtencionAlClienteYSoporte);
+        testUtils.clickElement(homePage.btnPosicion3Parrilla2);
         testUtils.getElement(btnDiagnosticarServicio);
     }
 
@@ -169,9 +178,7 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
     //Centros de atención y ventas
 
     public void checkCentrosAtencionVentas(String linea){
-        testUtils.clickElement(homePage.lisHome);
-        homePage.clickLineaPostpago(linea);
-        testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
+        homePage.setLinea(linea);
         testUtils.clickElement(homePage.btnPosicion3Parrilla2);
         testUtils.getElement(webViewCentrosAtencionVentas);
     }
@@ -180,20 +187,18 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
     //Consulta estado de PQR
 
     public void checkConsultaEstadoPQR(String linea){
-        testUtils.clickElement(homePage.lisHome);
-        homePage.clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
         testUtils.clickElement(homePage.btnPosicion1Parrilla2);
-        testUtils.getElement(txtNoEquiposFinanciados);
+        testUtils.getElement(lblConsultaEstadoPQR);
     }
 
 
     //Consulta tus servicios técnicos
 
     public void checkConsultaTusServiciosTecnicos(String linea){
-        testUtils.clickElement(homePage.lisHome);
-        homePage.clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
         testUtils.clickElement(homePage.btnPosicion2Parrilla2);
@@ -204,8 +209,7 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
     //Claro Check
 
     public void checkClaroCheck(String linea){
-        testUtils.clickElement(homePage.lisHome);
-        homePage.clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
         testUtils.clickElement(homePage.btnPosicion3Parrilla2);
@@ -216,8 +220,7 @@ public class AtencionAlClienteYSoportePosPage extends BasePage {
     //Centro de ayuda
 
     public void checkCentroAyuda(String linea){
-        testUtils.clickElement(homePage.lisHome);
-        homePage.clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
         testUtils.horizontalScroll(homePage.panelAtencionAlClienteYSoporte);
         testUtils.clickElement(homePage.btnPosicion4Parrilla2);

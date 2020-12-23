@@ -34,8 +34,15 @@ public class MasBeneficiosPosPage extends BasePage {
 
     //ClaroClub
 
-    @AndroidFindBy(id = "com.clarocolombia.miclaro:id/web_view")
-    private AndroidElement webViewClaroClub;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='claroclub.com'])[1]")
+    private AndroidElement lblClaroClub;
+
+    @AndroidFindBy(xpath = "//android.view.View[@resource-id='notifications1']")
+    private AndroidElement iconoNotificacion;
+
+    @AndroidFindBy(xpath = "//android.view.View[@text='Notificaciones']")
+    private AndroidElement lblNotificacion;
+
 
 
 
@@ -48,11 +55,6 @@ public class MasBeneficiosPosPage extends BasePage {
     private AndroidElement btnElegidosTodoDestino;
 
 
-
-    //Recomendados
-
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Contenido exclusivo Claro']")
-    private AndroidElement txtRecomendados;
 
 
 
@@ -71,6 +73,7 @@ public class MasBeneficiosPosPage extends BasePage {
     //General
 
     public void goToMasBeneficiosPanel(String linea){
+        testUtils.getElement(homePage.btnPosicion1Parrilla1);
         testUtils.clickElement(homePage.lisHome);
         homePage.clickLineaPostpago(linea);
         testUtils.getElement(homePage.btnPosicion1Parrilla1);
@@ -84,7 +87,10 @@ public class MasBeneficiosPosPage extends BasePage {
     public void checkClaroClub(String linea){
         goToMasBeneficiosPanel(linea);
         testUtils.clickElement(homePage.btnPosicion1Parrilla3);
-        testUtils.getElement(webViewClaroClub);
+        //switchToWebView();
+        testUtils.getElement(lblClaroClub);
+        //testUtils.clickElement(iconoNotificacion);
+        //testUtils.getElement(lblNotificacion);
 
     }
 
@@ -100,15 +106,7 @@ public class MasBeneficiosPosPage extends BasePage {
     }
 
 
-    //Recomendados
 
-
-    public void checkRecomendados(String linea){
-        goToMasBeneficiosPanel(linea);
-        testUtils.clickElement(homePage.btnPosicion3Parrilla3);
-        testUtils.getElement(txtRecomendados);
-
-    }
 
 
     //Datos Compartidos
@@ -116,8 +114,7 @@ public class MasBeneficiosPosPage extends BasePage {
 
     public void checkDatosCompartidos(String linea){
         goToMasBeneficiosPanel(linea);
-        testUtils.horizontalScroll(homePage.panelMasBeneficios);
-        testUtils.clickElement(homePage.btnPosicion4Parrilla3);
+        testUtils.clickElement(homePage.btnPosicion3Parrilla3);
         testUtils.clickElement(btnCerrarDatosCompartidos);
     }
 

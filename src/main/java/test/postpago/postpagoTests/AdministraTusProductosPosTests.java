@@ -8,7 +8,6 @@ import test.postpago.postpagoPages.AdministraTusProductosPosPage;
 import java.net.MalformedURLException;
 
 import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 
 public class AdministraTusProductosPosTests extends BaseTest {
@@ -21,7 +20,8 @@ public class AdministraTusProductosPosTests extends BaseTest {
     public void pos001_ConsultarDetalleConsumosdatos(String lineaPostpago) throws MalformedURLException {
         this.administraTusProductosPage = new AdministraTusProductosPosPage(basePage.getDriver());
         this.administraTusProductosPage.checkDetalleConsumos(lineaPostpago);
-        assertTrue(administraTusProductosPage.getTxtUltimaActualizacion().contains("Actualizado"), "successful detalle de consumos");
+        assertEquals(administraTusProductosPage.getlblLíneaPostpago(lineaPostpago),lineaPostpago);
+       // assertTrue(administraTusProductosPage.getTxtUltimaActualizacion().contains("Actualizado"), "successful detalle de consumos");
     }
 
 
@@ -79,26 +79,45 @@ public class AdministraTusProductosPosTests extends BaseTest {
     }
 
 
-    @Test(priority = 8,alwaysRun = true)
+    @Test(priority = 8, alwaysRun = true)
     @Parameters({"lineaPostpago"})
-    public void pos009_DesasociarCuentaPos(String lineaPostpago){
-        assertEquals(administraTusProductosPage.getTxtLineaPosDesasociar(lineaPostpago), lineaPostpago);
-        this.administraTusProductosPage.checkDesasociarCuentaPos();
+    public void pos009_AdquiereLineaNuevaPos(String lineaPostpago){
+        this.administraTusProductosPage.checkAdquiereLineaPos(lineaPostpago);
     }
 
 
     @Test(priority = 9, alwaysRun = true)
     @Parameters({"lineaPostpago"})
-    public void pos010_AdquiereLineaPos(String lineaPostpago){
-        this.administraTusProductosPage.checkAdquiereLineaPos(lineaPostpago);
+    public void pos010_TiendaClaroPos(String lineaPostpago){
+        this.administraTusProductosPage.checkTiendaClaroPos(lineaPostpago);
     }
 
 
     @Test(priority = 10, alwaysRun = true)
     @Parameters({"lineaPostpago"})
-    public void pos011_TiendaClaroPos(String lineaPostpago){
-        this.administraTusProductosPage.checkTiendaClaroPos(lineaPostpago);
+    public void pos011_AdelantaSaldo(String lineaPostpago){
+        this.administraTusProductosPage.checkAdelantaTuSaldo(lineaPostpago);
     }
+
+
+    @Test(priority = 11, alwaysRun = true)
+    @Parameters({"lineaPostpago"})
+    public void pos012_PortabilidadPostpago(String lineaPostpago){
+        this.administraTusProductosPage.checkPortabilidadPostpago(lineaPostpago);
+    }
+
+
+    @Test(priority = 12,alwaysRun = true)
+    @Parameters({"lineaPostpago"})
+    public void pos013_DesasociarCuentaPos(String lineaPostpago){
+        assertEquals(administraTusProductosPage.getTxtLineaPosDesasociar(lineaPostpago), lineaPostpago);
+        this.administraTusProductosPage.checkDesasociarCuentaPos();
+    }
+
+
+
+
+
 
 
 

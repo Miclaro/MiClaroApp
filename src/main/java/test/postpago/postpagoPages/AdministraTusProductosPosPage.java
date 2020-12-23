@@ -8,12 +8,14 @@ import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import main.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
+import test.home.homePages.HomePage;
 import utils.TestUtils;
 
 
 public class AdministraTusProductosPosPage extends BasePage {
 
     TestUtils testUtils = new TestUtils();
+    HomePage homePage = new HomePage(driver);
 
 
     /**
@@ -34,38 +36,7 @@ public class AdministraTusProductosPosPage extends BasePage {
 
     //General
 
-    @AndroidFindBy(id = "com.clarocolombia.miclaro:id/contentSpinnerInicio")
-    private AndroidElement lisHome;
-
-    String lineaPostpago;
-    By lblLíneaPostpago =  By.xpath("//android.widget.TextView[@text='" + lineaPostpago + "']");
-
-    @AndroidFindBy(xpath = "//android.widget.ImageButton[@content-desc='Navigate up']")
-    private AndroidElement btnAtras;
-
-    @AndroidFindBy(id = "com.clarocolombia.miclaro:id/lbUserHeader")
-    private AndroidElement txtHolaUser;
-
-    By panelAdminProducts =  By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView");
-
-    @AndroidFindBy (xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[1]")
-    private AndroidElement btnPosicion1Parrilla1;
-
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[2]")
-    private  AndroidElement btnPosicion2Parrilla1;
-
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[3]")
-    private  AndroidElement btnPosicion3Parrilla1;
-
-    @AndroidFindBy(xpath = "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView[4]")
-    private  AndroidElement btnPosicion4Parrilla1;
-
-    @AndroidFindBy (id = "com.clarocolombia.miclaro:id/btn_aceptar")
-    private AndroidElement btnCerrarMensajeError;
-
-
-    @AndroidFindBy(id="//android.widget.TextView[@text='cuenta']")
-    private AndroidElement headerCuentawebView;
+    By panelAdminProducts =  By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout/android.view.ViewGroup[2]/android.widget.LinearLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView[1]/android.widget.ImageView");
 
 
     //Detalle de consumos
@@ -73,6 +44,9 @@ public class AdministraTusProductosPosPage extends BasePage {
 
     @AndroidFindBy(id = "com.clarocolombia.miclaro:id/txtUltimaActulizacion")
     private AndroidElement txtUltimaActualizacion;
+
+    @AndroidFindBy(id = "com.clarocolombia.miclaro:id/txtConsumido")
+    private AndroidElement lblGBConsumidos;
 
 
     //Paga Tu Factura
@@ -101,7 +75,7 @@ public class AdministraTusProductosPosPage extends BasePage {
 
 
 
-    //Simulador de crédito
+    //Simulador de financiamiento
 
     @AndroidFindBy(id="com.clarocolombia.miclaro:id/tvTitle")
     private AndroidElement txtTituloSimulador;
@@ -135,6 +109,18 @@ public class AdministraTusProductosPosPage extends BasePage {
     private AndroidElement btnCancelarDesasociar;
 
 
+    //Adelanta saldo
+
+    @AndroidFindBy(id="com.clarocolombia.miclaro:id/lbHolAdelaSaldo")
+    private AndroidElement txtAdelantaTuSaldo;
+
+
+    //Portabilidad postpago
+    @AndroidFindBy(id="com.clarocolombia.miclaro:id/web_view")
+    private AndroidElement webViewPortabilidadPostpago;
+
+
+
 
 
     /**
@@ -143,12 +129,6 @@ public class AdministraTusProductosPosPage extends BasePage {
 
 
     //General
-
-    public void clickLineaPostpago(String linea){
-        By lblLíneaPostpago =  By.xpath("//android.widget.TextView[@text='" + linea + "']");
-        testUtils.waitElement(lblLíneaPostpago);
-        driver.findElement(lblLíneaPostpago).click();
-    }
 
     public String getlblLíneaPostpago(String linea){
         By lblLíneaPostpago =  By.xpath("//android.widget.TextView[@text='" + linea + "']");
@@ -159,45 +139,43 @@ public class AdministraTusProductosPosPage extends BasePage {
 
 
 
-    //Detalle de consumos
+    //Detalle de consumos -->Posición 1
 
-    public String getTxtUltimaActualizacion(){
+  /**  public String getTxtUltimaActualizacion(){
         testUtils.waitElement(txtUltimaActualizacion);
         String txtUltimaActualizacion = this.txtUltimaActualizacion.getText();
         return txtUltimaActualizacion;
-    }
+    }**/
 
     public void checkDetalleConsumos(String linea)  {
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
-        testUtils.clickElement(btnPosicion1Parrilla1);
+        homePage.setLinea(linea);
+        testUtils.clickElement(homePage.btnPosicion1Parrilla1);
+        testUtils.getElement(lblGBConsumidos);
     }
 
 
 
-    //Paga Tu Factura
+    //Paga Tu Factura -->Posición 2
 
     public void checkPagaTuFactura(String linea) {
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
-        testUtils.clickElement(btnPosicion2Parrilla1);
+        homePage.setLinea(linea);
+        testUtils.clickElement(homePage.btnPosicion2Parrilla1);
         testUtils.getElement(txtNombreUsuario);
     }
 
 
 
-    //Detalle de tu plan
+    //Detalle de tu plan -->Posición 3
 
     public void checkDetalleDePlan(String linea) {
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
-        testUtils.clickElement(btnPosicion3Parrilla1);
+        homePage.setLinea(linea);
+        testUtils.clickElement(homePage.btnPosicion3Parrilla1);
         testUtils.getElement(txtPlanPostpago);
     }
 
 
 
-    //Recargas y Paquetes
+    //Recargas y Paquetes -->Posición 4
 
     public String getTxtLineaPosRecargasPaquetes(){
         testUtils.waitElement(txtLineaPosRecargasPaquetes);
@@ -206,68 +184,68 @@ public class AdministraTusProductosPosPage extends BasePage {
     }
 
     public void checkRecargasYPaquetes(String linea) {
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(panelAdminProducts);
-        testUtils.clickElement(btnPosicion1Parrilla1);
+        testUtils.horizontalScrollSecondElement(panelAdminProducts);
+        testUtils.clickElement(homePage.btnPosicion1Parrilla1);
     }
 
 
 
-    //Roaming Internacional
+    //Roaming Internacional -->Posición 5
 
     public void checkRoamingInternacional(String linea){
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(panelAdminProducts);
-        testUtils.clickElement(btnPosicion2Parrilla1);
+        testUtils.horizontalScrollSecondElement(panelAdminProducts);
+        testUtils.clickElement(homePage.btnPosicion2Parrilla1);
         testUtils.getElement(txtEstadoRoaming);
     }
 
 
 
 
-    //Simulador de Financiamiento
+    //Simulador de Financiamiento -->Posición 6
 
     public void checkSimuladorDeFinanciamiento(String linea){
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(panelAdminProducts);
-        testUtils.clickElement(btnPosicion3Parrilla1);
+        testUtils.horizontalScrollSecondElement(panelAdminProducts);
+        testUtils.clickElement(homePage.btnPosicion3Parrilla1);
         testUtils.getElement(txtTituloSimulador);
         testUtils.getElement(btnIrCatalogo);
     }
 
 
 
-    //Mis Equipos Financiados
+    //Mis Equipos Financiados -->Posición 7
 
     public String getTxtNoEquiposFinanciados(String linea){
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(panelAdminProducts);
         testUtils.horizontalScroll(panelAdminProducts);
-        testUtils.clickElement(btnPosicion1Parrilla1);
+        testUtils.horizontalScrollSecondElement(panelAdminProducts);
+        testUtils.clickElement(homePage.btnPosicion1Parrilla1);
         testUtils.waitElement(txtNoEquiposFinanciados);
         String txtNoEquiposFinanciados = this.txtNoEquiposFinanciados.getText();
         return txtNoEquiposFinanciados;
     }
 
     public void checkNoEquiposFinanciados(){
-        testUtils.clickElement(btnCerrarMensajeError);
+        testUtils.clickElement(homePage.btnCerrarMensajeError);
     }
 
 
 
 
-    //Cambia tu número
+    //Cambia tu número -->Posición 8
 
     public void checkCambiaTuNumero(String linea){
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(panelAdminProducts);
         testUtils.horizontalScroll(panelAdminProducts);
-        testUtils.clickElement(btnPosicion2Parrilla1);
+        testUtils.horizontalScrollSecondElement(panelAdminProducts);
+        testUtils.clickElement(homePage.btnPosicion2Parrilla1);
         testUtils.getElement(txtCambiaTuNumero);
         testUtils.getElement(btnCambiarNumero);
     }
@@ -275,14 +253,14 @@ public class AdministraTusProductosPosPage extends BasePage {
 
 
 
-    //Desasociar Cuenta
+    //Desasociar Cuenta -->Posición 13
 
     public String getTxtLineaPosDesasociar(String linea){
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(panelAdminProducts);
         testUtils.horizontalScroll(panelAdminProducts);
-        testUtils.clickElement(btnPosicion3Parrilla1);
+        testUtils.horizontalScroll(panelAdminProducts);
+        testUtils.clickElement(homePage.btnPosicion4Parrilla1);
         testUtils.waitElement(txtLineaPosDesasociar);
         String txtLineaPosDesasociar = this.txtLineaPosDesasociar.getText();
         return txtLineaPosDesasociar;
@@ -298,13 +276,14 @@ public class AdministraTusProductosPosPage extends BasePage {
     //Adquiere una Línea Nueva
 
     public void checkAdquiereLineaPos(String linea){
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(panelAdminProducts);
         testUtils.horizontalScroll(panelAdminProducts);
-        testUtils.horizontalScroll(panelAdminProducts);
-        testUtils.clickElement(btnPosicion3Parrilla1);
-        testUtils.getElement(headerCuentawebView);
+        testUtils.horizontalScrollSecondElement(panelAdminProducts);
+        testUtils.clickElement(homePage.btnPosicion3Parrilla1);
+        testUtils.getElement(homePage.lblClaroTienda);
+        //testUtils.clickElement(homePage.btnMenuClaroTienda);
+        //testUtils.getElement(homePage.lblOpcionCelulares);
     }
 
 
@@ -312,13 +291,40 @@ public class AdministraTusProductosPosPage extends BasePage {
     //Tienda Claro
 
     public void checkTiendaClaroPos(String linea){
-        testUtils.clickElement(lisHome);
-        clickLineaPostpago(linea);
+        homePage.setLinea(linea);
         testUtils.horizontalScroll(panelAdminProducts);
         testUtils.horizontalScroll(panelAdminProducts);
         testUtils.horizontalScroll(panelAdminProducts);
-        testUtils.clickElement(btnPosicion4Parrilla1);
-        testUtils.getElement(headerCuentawebView);
+        testUtils.clickElement(homePage.btnPosicion1Parrilla1);
+        testUtils.getElement(homePage.lblClaroTienda);
+       // testUtils.clickElement(homePage.btnMenuClaroTienda);
+       //testUtils.getElement(homePage.lblOpcionCelulares);
+    }
+
+
+    //Adelanta tu saldo -->Posición 11
+
+    public void checkAdelantaTuSaldo(String linea){
+        homePage.setLinea(linea);
+        testUtils.horizontalScroll(panelAdminProducts);
+        testUtils.horizontalScroll(panelAdminProducts);
+        testUtils.horizontalScroll(panelAdminProducts);
+        testUtils.clickElement(homePage.btnPosicion2Parrilla1);
+        testUtils.getElement(txtAdelantaTuSaldo);
+    }
+
+
+    //Portabilidad postpago -->Posición 12
+
+    public void checkPortabilidadPostpago(String linea){
+        homePage.setLinea(linea);
+        testUtils.horizontalScroll(panelAdminProducts);
+        testUtils.horizontalScroll(panelAdminProducts);
+        testUtils.horizontalScroll(panelAdminProducts);
+        testUtils.clickElement(homePage.btnPosicion3Parrilla1);
+        testUtils.getElement(homePage.lblClaroTienda);
+        // testUtils.clickElement(homePage.btnMenuClaroTienda);
+        // testUtils.getElement(homePage.lblOpcionCelulares);
     }
 
 }
