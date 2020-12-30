@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="0" passed="0">
+  <reporter-output>
+    <line>
+      <![CDATA[This is the sample screenshot]]>
+    </line>
+    <line>
+      <![CDATA[<a href='C:\Users\sepulvedadc\Documents\IdeaProjects\miClaroApp\Screenshots\null_null\null\AdministraTusProductosPosTests\pos012_PortabilidadPostpago.png'> <img src='C:\Users\sepulvedadc\Documents\IdeaProjects\miClaroApp\Screenshots\null_null\null\AdministraTusProductosPosTests\pos012_PortabilidadPostpago.png' height='400' width='400'/> </a>]]>
+    </line>
+    <line>
+      <![CDATA[This is the sample screenshot]]>
+    </line>
+    <line>
+      <![CDATA[<a href='C:\Users\sepulvedadc\Documents\IdeaProjects\miClaroApp\Screenshots\null_null\null\AdministraTusProductosPosTests\pos013_DesasociarCuentaPos.png'> <img src='C:\Users\sepulvedadc\Documents\IdeaProjects\miClaroApp\Screenshots\null_null\null\AdministraTusProductosPosTests\pos013_DesasociarCuentaPos.png' height='400' width='400'/> </a>]]>
+    </line>
+  </reporter-output>
+  <suite name="Suite" duration-ms="0" started-at="2020-12-23T22:21:05Z" finished-at="2020-12-23T22:21:05Z">
+    <groups>
+    </groups>
+  </suite> <!-- Suite -->
+</testng-results>

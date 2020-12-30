@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Failed suite [Suite]" parallel="tests">
+  <parameter name="lineaPostpago" value="3103021199"/>
+  <listeners>
+    <listener class-name="listeners.TestListener"/>
+  </listeners>
+  <test thread-count="5" verbose="0" name="Pixel_2(failed)" parallel="tests">
+    <classes>
+      <class name="test.postpago.postpagoTests.EntretenimientoPosTests">
+        <methods>
+          <include name="pos028_ClaroGaming" invocation-numbers="0"/>
+          <include name="beforeSuite"/>
+          <include name="allowAlert"/>
+        </methods>
+      </class> <!-- test.postpago.postpagoTests.EntretenimientoPosTests -->
+      <class name="test.postpago.postpagoTests.AtencionAlClienteYSoportePosTests">
+        <methods>
+          <include name="pos014_CentrosAtencionVentas" invocation-numbers="0"/>
+          <include name="beforeSuite"/>
+          <include name="allowAlert"/>
+        </methods>
+      </class> <!-- test.postpago.postpagoTests.AtencionAlClienteYSoportePosTests -->
+    </classes>
+  </test> <!-- Pixel_2(failed) -->
+</suite> <!-- Failed suite [Suite] -->

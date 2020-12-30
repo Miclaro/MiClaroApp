@@ -1,0 +1,43 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 15, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 363.975 s <<< FAILURE! - in TestSuite
+pos012_PortabilidadPostpago(test.postpago.postpagoTests.AdministraTusProductosPosTests)  Time elapsed: 42.291 s  <<< FAILURE!
+org.openqa.selenium.NoSuchElementException: Can't locate an element by this strategy: By.chained({By.xpath: //android.view.View[@content-desc='tienda.claro.com']})
+	at test.postpago.postpagoTests.AdministraTusProductosPosTests.pos012_PortabilidadPostpago(AdministraTusProductosPosTests.java:106)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction@36ac73cc (tried for 1 second(s) with 500 milliseconds interval)
+	at test.postpago.postpagoTests.AdministraTusProductosPosTests.pos012_PortabilidadPostpago(AdministraTusProductosPosTests.java:106)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+Cannot locate an element using By.chained({By.xpath: //android.view.View[@content-desc='tienda.claro.com']})
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A6ZPH5CD9092254', ip: '192.168.187.2', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: AndroidDriver
+	at test.postpago.postpagoTests.AdministraTusProductosPosTests.pos012_PortabilidadPostpago(AdministraTusProductosPosTests.java:106)
+
+pos013_DesasociarCuentaPos(test.postpago.postpagoTests.AdministraTusProductosPosTests)  Time elapsed: 43.385 s  <<< FAILURE!
+org.openqa.selenium.NoSuchElementException: Can't locate an element by this strategy: By.chained({By.id: com.clarocolombia.miclaro:id/tvCuenta})
+	at test.postpago.postpagoTests.AdministraTusProductosPosTests.pos013_DesasociarCuentaPos(AdministraTusProductosPosTests.java:113)
+Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction@45decfbb (tried for 1 second(s) with 500 milliseconds interval)
+	at test.postpago.postpagoTests.AdministraTusProductosPosTests.pos013_DesasociarCuentaPos(AdministraTusProductosPosTests.java:113)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+Cannot locate an element using By.chained({By.id: com.clarocolombia.miclaro:id/tvCuenta})
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A6ZPH5CD9092254', ip: '192.168.187.2', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: AndroidDriver
+	at test.postpago.postpagoTests.AdministraTusProductosPosTests.pos013_DesasociarCuentaPos(AdministraTusProductosPosTests.java:113)
+
+pos012_ClaroBot(test.postpago.postpagoTests.AtencionAlClienteYSoportePosTests)  Time elapsed: 2.051 s  <<< FAILURE!
+org.openqa.selenium.WebDriverException: 
+Connection refused: connect
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'A6ZPH5CD9092254', ip: '192.168.187.2', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_241'
+Driver info: driver.version: AndroidDriver
+	at test.postpago.postpagoTests.AtencionAlClienteYSoportePosTests.pos012_ClaroBot(AtencionAlClienteYSoportePosTests.java:19)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at test.postpago.postpagoTests.AtencionAlClienteYSoportePosTests.pos012_ClaroBot(AtencionAlClienteYSoportePosTests.java:19)
+
+pos012_ClaroBot(test.postpago.postpagoTests.AtencionAlClienteYSoportePosTests)  Time elapsed: 3.235 s  <<< FAILURE!
+java.lang.NullPointerException
+
