@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="Suite" parallel="tests">
-    <parameter name="lineaPostpago" value="3103021199"/>
+    <parameter name="lineaPostpago" value="${lineaPostpago}"/>
     <test name="Pixel_2">
         <listeners>
             <listener class-name="listeners.TestListener" />

@@ -25,10 +25,9 @@
         <appium.version>7.0.0</appium.version>
         <selenium.version>3.141.59</selenium.version>
 
-        <defaultSuiteFiles>
-            ./testng.xml,
-        </defaultSuiteFiles>
-        <suiteFile>${defaultSuiteFiles}</suiteFile>
+        <lineaPostpago>$ {env.lineaPostpago}</lineaPostpago>
+        <defaultSuiteFiles>./testng.xml,</defaultSuiteFiles>
+        <xml.file>$ {env.xmlFileName} </xml.file>
 
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -49,8 +48,11 @@
                         <version>2.22.0</version>
                         <inherited>true</inherited>
                         <configuration>
+                            <systemPropertyVariables>
+                                <lineaPostpago>${lineaPostpago}</lineaPostpago>
+                            </systemPropertyVariables>
                             <suiteXmlFiles>
-                                <suiteXmlFile>testng.xml</suiteXmlFile>
+                                <suiteXmlFile>${xml.file}</suiteXmlFile>
                             </suiteXmlFiles>
                         </configuration>
                     </plugin>
