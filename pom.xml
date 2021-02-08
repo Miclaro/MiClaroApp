@@ -43,7 +43,7 @@
                         <inherited>true</inherited>
                         <configuration>
                             <systemPropertyVariables>
-                                <testEnvironment>${lineaPostpago}</testEnvironment>
+                                <lineaPostpago>${lineaPostpago}</lineaPostpago>
                             </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>./testng.xml</suiteXmlFile>
